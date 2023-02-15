@@ -1,0 +1,68 @@
+1 : SELECT * FROM emp where deptno = 10 OR deptno = 30;
+
+2 : SELECT dname ,COUNT(*) FROM emp JOIN dept ON emp.deptno = dept.deptno GROUP BY dname HAVING COUNT(*) > 1;
+
+3 : SELECT * FROM emp JOIN dept ON emp.deptno = dept.deptno where ename LIKE 'S%';
+
+4 : SELECT * From emp where extract( year from AGE(CURRENT_DATE, hire_date))>2;
+
+5 : UPDATE emp set ename = REPLACE(ename, 'a', '#');
+
+6 : SELECT v1.ename, v2.ename as Manager_Name FROM emp as v1 JOIN emp as v2 ON v1.mgr = v2.empno;
+
+7 : SELECT dname , SUM(sal) FROM emp JOIN Dept ON emp.deptno = dept.deptno GROUP BY dname;
+
+8 : SELECT * FROM emp LEFT JOIN Dept ON emp.deptno = dept.deptno;
+
+9 : UPDATE emp set sal =  sal + (sal * 0.1);
+
+10 : DELETE FROM emp where empno IN (select empno from emp join dept on emp.deptno = dept.deptno where dept.deptno=30) ;
+
+11 : select ename ,sal + coalesce(commission,0) from emp as totalSalary;
+
+12 : alter table emp alter column ename TYPE varchar(250);
+
+13 : select now();
+
+14 : CREATE TABLE STUDENT(
+       id bigserial PRIMARY KEY NOT NULL,
+       student_name varchar(250) NOT NULL,
+       student_mail varchar(250) NOT NULL,
+       city varchar(100) NOT NULL,
+       gender varchar(10) NOT NULL,
+       age numeric NOT NULL);
+       
+15 : select count(*) from emp where sal > 10000;
+
+16 : select max(sal) from emp;
+     select min(sal) from emp;
+     select avg(sal) from emp;
+     
+17 : select loc , count(*) from emp left join dept on emp.deptno = dept.deptno group by loc;
+
+18 : select * from emp order by ename desc;
+
+19 : CREATE TABLE EMP_BKP AS SELECT empno, ename, sal  FROM emp;
+
+20 : select concat(substring(ename, 1,3),sal) as salaryWithName from emp;
+
+21 : select * from emp where ename LIKE 'S%' ;
+
+22 : select * from emp LEFT JOIN dept on emp.deptno = dept.deptno where dept.deptno = 10 ;
+
+23 : Pending
+
+24 : select * from emp where mgr = (select empno  from emp where empno = 1003 );
+
+25 : select v1.ename as Manager_list, count(*) as EMP_COUNT from emp join emp as v1 on emp.mgr = v1.empno group by v1.ename order by EMP_COUNT desc;
+
+26 : select emp.ename ,emp.sal, v1.ename as Manager_list , dept.dname from emp left join dept on dept.deptno = emp.deptno left join emp as v1 on emp.mgr = v1.empno order by sal desc offset 1 limit 1;
+
+27 : select v1.ename as Manager_name, emp.ename as Employe_name from emp join emp as v1 on emp.mgr = v1.empno;
+
+28 : select v1.ename as Manager_name, extract( year from Age(current_date, v1.hire_date)) as Manager_Experiance ,emp.ename as Employe_name from emp join emp as v1 on emp.mgr = v1.empno;
+
+29 : select emp.ename , v1.ename as Manager_Name ,dept.loc , v1.commission from emp join emp as v1 on emp.mgr = v1.empno  join dept on dept.deptno = v1.deptno where dept.deptno = 20 AND v1.commission < 1000;
+
+30 : select ename , sal, hire_date, commission, extract(year from age(current_date, hire_date)) as employe_exp from emp where extract(year from age(current_date, hire_date)) > 18;
+
