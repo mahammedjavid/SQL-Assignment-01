@@ -50,7 +50,7 @@
 
 22 : select * from emp LEFT JOIN dept on emp.deptno = dept.deptno where dept.deptno = 10 ;
 
-23 : Pending
+23 : SELECT * FROM emp WHERE SUBSTRING(ename, 1, 1) >= 'A' AND SUBSTRING(ename, 1, 1) <= 'k'
 
 24 : select * from emp where mgr = (select empno  from emp where empno = 1003 );
 
